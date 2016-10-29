@@ -1,0 +1,60 @@
+{% extends 'music/base.html' %}
+{% block title %}Songs{% endblock %}
+<!--localhost:8000/music/1-->
+
+
+{% block body %}
+	<img src="{{album.album_logo.url}}" style="width: 250px;">
+
+	<h1>{{album.album_title}}</h1>
+	<h2>{{album.artist}}</h2>
+
+	{% if error_message %}
+
+		<p><strong>{{ error_message }}</strong>></p>>
+
+	{% endif %}
+
+	{% for song in album.song_set.all %}
+	<a href="{{song.song_upload}}">
+	<h4>{{ song.song_title }}</h4><br>
+	</a>
+	{% endfor %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+<!-- 	<form action="{% url 'music:favourite' album.id%}" method="post">
+		{% csrf_token %}
+		{% for song in album.song_set.all %}
+			<input type="radio" id="song{{ forloop.counter }}" name="song" value="{{song.id}}"/>
+			<label for="song{{ forloop.counter }}">
+				{{ song.song_title }}
+				
+				{% if song.is_favourite  %}
+
+					<img src="i.imgur.com/b9b13Rd.png"/>
+
+				{% endif %}
+
+			</label><br>
+		{% endfor %}	
+
+		<input type="submit" value="Favourite">  --><!-- Favorite button -->
+<!-- 
+	</form> 
+ -->
+
+
+<!-- <ul>
+	{% for song in album.song_set.all %}
+		<li>{{song.song_title}} - {{song.file_type}}</li>
+	{% endfor %}
+
+</ul>

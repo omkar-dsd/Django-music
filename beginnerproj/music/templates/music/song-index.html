@@ -1,0 +1,50 @@
+{% extends 'music/base.html' %}
+{% block title %}Songs{% endblock %}
+
+
+{% block head %}
+
+
+        <script type="text/javascript">
+        $(document).ready(function(){
+            var description = '';
+
+            $('body').ttwMusicPlayer(myPlaylist, {
+                autoPlay:false, 
+                description:description,
+                jPlayer:{
+                    swfPath:'../plugin/jquery-jplayer' //You need to override the default swf path any time the directory structure changes
+                }
+            });
+        });
+    </script>
+
+
+{% endblock %}
+
+
+
+{% block body %}
+	{% if all_songs %}
+		<u1>
+
+
+			{% for song in all_songs %}
+
+				<li><a href="#">{{song.song_title}}</a>
+					<audio src="{{song.song_upload}}" controls="controls">
+					Your browser does not support the audio element.
+					</audio>
+				</li>
+			{% endfor %}
+		</u1>
+
+
+	{% else %}
+		<h3> No songs Found</h3>
+	{% endif %}
+
+
+
+{% endblock %}
+
